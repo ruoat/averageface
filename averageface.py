@@ -60,7 +60,7 @@ def get_imageinfo_from_files(files, cascade):
 
 def mergeimages(imageinfo, eye_center, target_width, target_height, cascade):
     print "Merging " + str(len(imageinfo)) + " images to size " + str(target_width) + "," + str(target_height)
-    average_image = np.zeros([target_height, target_width, 3], dtype=np.uint64)
+    average_image = np.zeros([target_height, target_width, 3])
     average_eye_x_distance = eye_center[1][0] - eye_center[0][0]
     #print "average_eye_x_dist " + str(average_eye_x_distance)
     ok_faces = 0
@@ -102,12 +102,12 @@ def mergeimages(imageinfo, eye_center, target_width, target_height, cascade):
         print filename + " " + str(resize_factor)
         x_size_old = img.shape[1]
         y_size_old = img.shape[0]
-        
-        x_size = int(max_width - abs(x_diff))
-        y_size = int(max_height - abs(y_diff))
+
+        x_size = max_width - abs(x_diff)
+        y_size = max_height - abs(y_diff)
         #print str(x_size_old) + " " +  str(y_size_old) + " " + x_size + " " + y_size
 
-        temp_image = np.empty([target_height, target_width, 3], dtype=np.uint64)
+        temp_image = np.empty([target_height, target_width, 3])
         temp_image.fill(255)
         #print str(target_y_offset) + " " + str(y_size) + " " + str(target_x_offset) + " "+ str(x_size)
         #print str(source_y_offset) + " " + str(source_x_offset)
